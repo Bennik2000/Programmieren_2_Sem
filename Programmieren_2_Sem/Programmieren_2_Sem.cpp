@@ -1,55 +1,77 @@
+#include <ctime>
 #include <iostream>
+#include <random>
 
-const char *names[] = {"Bob",   "Alice", "Timo",     "Andy",
-                       "Sarah", "Abbie", "Gabriella"};
+const char *names[] = {"Bob", "Alice", "Timo", "Sarah", "Andy", "Abbie"};
 const char *surnames[] = {"Smith", "Baker", "Mayer", "Mueller"};
 
-struct Employee {
-  int id;
-  const char *firstName;
-  const char *surname;
-  int weight;
-  enum gender { male, female } gender;
+struct Employee
+{
+    int id;
+    const char *firstName;
+    const char *surname;
+    int weight;
+    enum gender
+    {
+        male,
+        female
+    } gender;
 };
 
-void generateEmployees(Employee employees[], int count) {
-  for (int i = 0; i < count; i++) {
-    employees[i].id = i + 1;
+/**
+ * Fill the employee array with values
+ */
+void generateEmployees(Employee employees[], int count)
+{
+    for (int i = 0; i < count; i++)
+    {
+        employees[i].id = i + 1;
 
-    employees[i].firstName = names[i % 7];
-    employees[i].surname = surnames[i % 4];
+        employees[i].surname = surnames[i % 4];
 
-    employees[i].gender = i % 2 == 0 ? Employee::male : Employee::female;
-  }
+        const int nameIndex = rand() % 6;
+
+        employees[i].firstName = names[nameIndex];
+        employees[i].gender = nameIndex % 2 == 0 ? Employee::male : Employee::female;
+    }
 }
 
-void outputEmployees(Employee employees[], int count) {
-  for (int i = 0; i < count; i++) {
+/**
+ * Print the employees in array to stdout
+ */
+void outputEmployees(Employee employees[], int count)
+{
+    for (int i = 0; i < count; i++)
+    {
 
-    // Assuming the opposite of male is female
-    const char *gender;
+        const char *gender;
 
-  	switch (employees[i].gender)
-  	{ case Employee::male:
-          gender = "male";
-          break;
+        switch (employees[i].gender)
+        {
+        case Employee::male:
+            gender = "Herr";
+            break;
         case Employee::female:
-          gender = "female";
-          break;
+            gender = "Frau";
+            break;
         default:
-          gender = "other";
-  	}
+            gender = "other";
+        }
 
-    printf("%i: %s %s (%s)\n", employees[i].id, employees[i].firstName,
-           employees[i].surname, gender);
-  }
+        printf("%i: %s %s %s\n", employees[i].id, gender, employees[i].firstName,
+               employees[i].surname);
+    }
 }
 
-int main() {
-  const int count = 10;
-	
-  Employee employees[count];
+int main()
+{
+    // Initialize random with a time based seed
+    srand(time(nullptr));
 
-  generateEmployees(employees, count);
-  outputEmployees(employees, count);
+    const int count = 10;
+
+    Employee employees[count];
+
+    generateEmployees(employees, count);
+    outputEmployees(employees, count);
 }
