@@ -5,7 +5,7 @@
 class Auto
 {
   public:
-    std::string name;
+    const std::string name;
 
   private:
     double movedDistance = 0;
@@ -13,12 +13,12 @@ class Auto
     double averageFuelUsage;
 
   public:
-    Auto(std::string name, Ort currentPosition, double averageFuelUsage)
+    Auto(const std::string name, const Ort currentPosition, const double averageFuelUsage)
         : name(name), currentPosition(currentPosition), averageFuelUsage(averageFuelUsage)
     {
     }
 
     void moveTo(Ort ort);
-    double getMovedDistance();
-    double getNeededFuel();
+    double getMovedDistance() const;
+    double getNeededFuel() const;
 };

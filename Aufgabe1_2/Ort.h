@@ -9,7 +9,7 @@ class Ort
     std::string name;
 
   public:
-    Ort(int x, int y, std::string name) : x(x), y(y), name(name)
+    Ort(const int x, const int y, const std::string name) : x(x), y(y), name(name)
     {
     }
 };
