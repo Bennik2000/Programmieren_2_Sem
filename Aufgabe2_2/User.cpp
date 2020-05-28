@@ -3,7 +3,7 @@
 
 int User::userCount = 0;
 
-User::User(const std::string name) : name(name), id(userCount++) {
+User::User(std::string name) : name(name), id(userCount++) {
 }
 
 void User::print() const {

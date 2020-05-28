@@ -5,7 +5,7 @@ int main()
 {
     User *users[5];
 
-    users[0] = new User("Jonas");
+    users[0] = new User();
     users[1] = new User("Jannis");
     users[2] = new User("Jakob");
     users[3] = new User("Jenny");

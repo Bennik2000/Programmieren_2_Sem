@@ -5,8 +5,8 @@ class User
 {
   private:
     static int userCount;
-    std::string name;
-    int id;
+    const std::string name;
+    const int id;
 
   public:
     User(std::string name = "Hans");
