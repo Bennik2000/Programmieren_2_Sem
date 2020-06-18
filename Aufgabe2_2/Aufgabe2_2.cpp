@@ -14,4 +14,8 @@ int main()
     for (int i = 0; i < 5; i++) {
         users[i]->print();
     }
+
+    for (int i = 0; i < 5; i++) {
+        delete users[i];
+    }
 }
